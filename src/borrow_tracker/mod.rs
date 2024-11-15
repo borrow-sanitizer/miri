@@ -11,6 +11,14 @@ use crate::*;
 pub mod stacked_borrows;
 pub mod tree_borrows;
 
+#[repr(C)]
+#[derive(Copy, Clone, Hash, PartialEq, Eq)]
+pub enum PlaceKind {
+    Freeze,
+    Unpin,
+    Default
+}
+
 /// Tracking pointer provenance
 #[derive(Copy, Clone, Hash, PartialEq, Eq, PartialOrd, Ord)]
 pub struct BorTag(NonZero<u64>);
@@ -139,6 +147,7 @@ pub enum RetagFields {
 }
 
 /// The flavor of the protector.
+#[repr(C)]
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum ProtectorKind {
     /// Protected against aliasing violations from other pointers.

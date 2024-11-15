@@ -75,7 +75,7 @@ extern crate rustc_driver;
 
 mod alloc_addresses;
 mod alloc_bytes;
-mod borrow_tracker;
+pub mod borrow_tracker;
 mod clock;
 mod concurrency;
 mod diagnostics;
